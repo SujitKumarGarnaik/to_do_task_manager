@@ -1,0 +1,31 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <a href="{% url 'task_create' %}" class="btn btn-primary mb-3">Add New Task</a>
+    
+    {% for task in tasks %}
+        <div class="card task-card priority-{{ task.priority }} status-{{ task.status }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ task.title }}</h5>
+                <p class="card-text">{{ task.description|truncatechars:100 }}</p>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <span class="badge bg-secondary">{{ task.get_priority_display }}</span>
+                        <span class="badge bg-info text-dark">{{ task.get_status_display }}</span>
+                        {% if task.due_date %}
+                            <span class="text-muted">Due: {{ task.due_date }}</span>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <a href="{% url 'task_detail' task.pk %}" class="btn btn-sm btn-outline-primary">View</a>
+                        <a href="{% url 'task_update' task.pk %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                        <a href="{% url 'task_delete' task.pk %}" class="btn btn-sm btn-outline-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>No tasks yet. Create your first task!</p>
+    {% endfor %}
+{% endblock %}
