@@ -1,4 +1,4 @@
-Task Manager - Simple Django CRUD Application
+##Task Manager - Simple Django CRUD Application
 A simple yet powerful Task Manager web application built with Django that allows users to Create, Read, Update, and Delete (CRUD) tasks with a clean, responsive interface.
 
 Features
